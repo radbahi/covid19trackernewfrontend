@@ -15,7 +15,7 @@ const WorldMap = () => {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    fetch("https://sheltered-crag-77668.herokuapp.com/locations").then((response) => {
+    fetch("http://localhost:3000/locations").then((response) => {
       if (response.status !== 200) {
         console.log(`There was a problem: ${response.status}`);
         return;

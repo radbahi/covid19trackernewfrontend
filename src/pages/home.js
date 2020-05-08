@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import WorldMap from "../components/worldmap.js";
-import TestMap from "../components/testmap.js";
 import Stories from "../components/stories.js";
 import VirusInfo from "../components/virusinfo.js";
 

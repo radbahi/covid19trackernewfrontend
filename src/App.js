@@ -54,10 +54,10 @@ function App() {
   //   dispatch({type: "SET_USER", payload: payload})
   // }
 
-  useEffect(() => {
-    dispatch(Action.persistUser());
-    // persist is already done in actions.js file
-  }, []);
+  // useEffect(() => {
+  //   dispatch(Action.persistUser());
+  //   // persist is already done in actions.js file
+  // }, []);
 
   return (
     <div className="App">

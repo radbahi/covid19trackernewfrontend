@@ -5,7 +5,7 @@ import { Button, Card } from "react-bootstrap";
 const Stories = () => {
   const [stories, setStories] = useState([]);
   useEffect(() => {
-    fetch("https://sheltered-crag-77668.herokuapp.com/stories").then((response) => {
+    fetch("http://localhost:3000/stories").then((response) => {
       if (response.status !== 200) {
         console.log(`There was a problem: ${response.status}`);
         return;

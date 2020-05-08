@@ -1,4 +1,4 @@
-const BASE_URL = "https://sheltered-crag-77668.herokuapp.com";
+const BASE_URL = "http://localhost:3000";
 const USERS_URL = BASE_URL + "/users";
 const PERSIST_URL = BASE_URL + "/persist";
 const LOGIN_URL = BASE_URL + "/login";
@@ -85,19 +85,20 @@ const loginUserToDB = (userCredentials) => (dispatch) => {
     });
 };
 
-const persistUser = () => (dispatch) => { // NEED TO GET THIS TO WORK WITH EXPRESS. NEED AUTH STUFF.
-  const config = { // persistUser IS CALLED IN APP.JS
-    method: "GET",
-    headers: {
-      Authorization: `bearer ` + localStorage.token,
-    },
-  };
-  fetch(PERSIST_URL, config)
-    .then((r) => r.json())
-    .then((userInstance) => {
-      dispatch(setUserAction(userInstance));
-    });
-};
+// const persistUser = () => (dispatch) => { // NEED TO GET THIS TO WORK WITH EXPRESS. NEED AUTH STUFF.
+//   const config = {
+//     method: "GET",
+//     headers: {
+//       Authorization: `bearer ` + localStorage.token,
+//     },
+//   };
+//   console.log(localStorage.token)
+//   fetch(PERSIST_URL, config)
+//     .then((r) => r.json())
+//     .then((userInstance) => {
+//       dispatch(setUserAction(userInstance));
+//     });
+// };
 
 const logoutUser = () => (dispatch) => {
   dispatch(clearUserAction());
@@ -108,7 +109,7 @@ export default {
   newUserToDB,
   deleteUserFromDB,
   loginUserToDB,
-  persistUser,
+  // persistUser,
   logoutUser,
   updateUserFromDB,
 };
