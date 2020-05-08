@@ -75,7 +75,7 @@ const Profile = (props) => {
   useEffect(() => {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
     try {
-      fetch("http://localhost:3000/locations").then((response) => {
+      fetch("https://sheltered-crag-77668.herokuapp.com/locations").then((response) => {
         if (response.status !== 200) {
           console.log(`There was a problem: ${response.status}`);
           return;
