@@ -1,6 +1,5 @@
 const BASE_URL = "https://sheltered-crag-77668.herokuapp.com";
 const USERS_URL = BASE_URL + "/users";
-const PERSIST_URL = BASE_URL + "/persist";
 const LOGIN_URL = BASE_URL + "/login";
 const SPECIFIC_USER_URL = (id) => USERS_URL + "/" + id;
 

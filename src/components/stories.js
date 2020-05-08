@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import _ from "lodash";
 import { Button, Card } from "react-bootstrap";
 
 const Stories = () => {

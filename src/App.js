@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./routes";
-import { useDispatch } from "react-redux";
 import "./App.css";
 import Nav from "./components/nav.js";
-import Action from "./redux/actions.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // USESTATE IS LIKE THIS
@@ -46,7 +44,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   // const username = useSelector(state => state.username);
-  const dispatch = useDispatch();
   // const handleClick = () => {
   //   const payload = {
   //     username: 'John',

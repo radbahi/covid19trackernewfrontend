@@ -142,7 +142,6 @@ const Profile = (props) => {
   //   });
   // };
 
-  let countryTitle = null;
 
   const loggedIn = location ? (
     <h3>Your set location is {location}.</h3>

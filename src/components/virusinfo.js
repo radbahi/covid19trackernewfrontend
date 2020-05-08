@@ -48,7 +48,7 @@ const VirusInfo = () => {
           This video below goes into more detail. Please consider watching it.
         </h3>
       </p>
-      <iframe
+      <iframe title="corona-vid"
         width="560"
         height="315"
         src="https://www.youtube.com/embed/BtN-goy9VOY"

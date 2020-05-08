@@ -12,16 +12,6 @@ const UserReducer = (state = {}, { type, payload }) => {
   }
 };
 
-// LOCATIONS do i even need this?
-const LocationReducer = (state = [], { type, payload }) => {
-  switch (type) {
-    case "FETCH_INFECTED":
-      return payload
-    default:
-      return state
-  }
-}
-
 const x = {
   user: UserReducer,
 };

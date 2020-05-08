@@ -104,7 +104,6 @@ const WorldMap = () => {
 
             if (user.locations_id && user.locations_id !== 500000) {
               if (parseInt(user.locations_id) === parseInt(location.id)) {
-                console.log("hello");
                 return (
                   <OverlayTrigger
                     trigger="hover"
@@ -143,7 +142,6 @@ const WorldMap = () => {
               user.status === 500 ||
               !user.locations_id
             ) {
-              console.log("hell00000o");
               return (
                 <OverlayTrigger
                   trigger="hover"
