@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
-import { BrowserRouter as Router, } from 'react-router-dom';
-import Routes from './routes';
-import {useDispatch} from 'react-redux'
-import './App.css';
-import Nav from './components/nav.js'
-import Action from './redux/actions.js'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "./routes";
+import { useDispatch } from "react-redux";
+import "./App.css";
+import Nav from "./components/nav.js";
+import Action from "./redux/actions.js";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // USESTATE IS LIKE THIS
 //const [loading, setLoading] = useState(false)
@@ -13,16 +13,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // TO GET THE VALUES OF THAT THING'S STATE, JUST CALL LOADING. OR WHATEVER U NAMED THE FIRST THING.
 
 // // state = {
-// //   user { 
+// //   user {
 //    name:'',
-//    password: '', 
+//    password: '',
 // // location: ''
 // // }}
 
 // userReducers
-  // Actions: create, 
+// Actions: create,
 // destinationReducers
-
 
 // function App() {
 //   return (
@@ -45,10 +44,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //   );
 // }
 
-
 function App() {
   // const username = useSelector(state => state.username);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // const handleClick = () => {
   //   const payload = {
   //     username: 'John',
@@ -57,22 +55,18 @@ function App() {
   // }
 
   useEffect(() => {
-    dispatch(Action.persistUser())
-      // persist is already done in actions.js file
-  }, [])
-
-
+    dispatch(Action.persistUser());
+    // persist is already done in actions.js file
+  }, []);
 
   return (
     <div className="App">
-    <Router>
-      <Nav/>
-      <Routes />
-    </Router>
+      <Router>
+        <Nav />
+        <Routes />
+      </Router>
     </div>
   );
 }
 
-export default App
-
-
+export default App;
