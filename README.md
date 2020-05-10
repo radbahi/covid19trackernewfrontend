@@ -1,3 +1,5 @@
+A simple covid-19 tracking app I have built. Daily top international headlines are included as well as statistics of the virus. Profile creation enables you to select a certain location to be mapped out in the homepage to access that bubble of information easier, so as to not be lost under bubbles on top of it.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
