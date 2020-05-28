@@ -18,7 +18,6 @@ const Stories = () => {
 
   const divStyle = {
     margin: "40px",
-    border: "5px solid pink",
     position: "absolute",
     left: "120px",
     top: "520px",

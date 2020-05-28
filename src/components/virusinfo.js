@@ -2,17 +2,29 @@ import React from "react";
 
 const VirusInfo = () => {
   const divStyle = {
-    border: "5px solid pink",
-    position: "absolute",
-    right: "120px",
-    top: "80px",
-    width: "570px",
-    // height: '120px',
-    overflow: "scroll;",
+    display: "flex",
+    flexDirection: 'column',
+    // overflow: "scroll",
+    // textAlign: 'right',
+    // flexGrow: 2,
+    // flexShrink: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // flexBasis: "20em",
+    // margin: '3vh',
+    // padding: '50vh',
+    marginTop: '-43em',
+    marginRight: '0.5em',
+    marginLeft: '60em',
+    // padding: '20vh',
+    // marginLeft: 'auto',
+    // flexWrap: 'wrap',
+    // position: 'fixed',
+    height: '100%'
   };
   const pStyle = {
     fontSize: "18px",
-    textAlign: "left",
+
   };
 
   return (
