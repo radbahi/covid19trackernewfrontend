@@ -177,6 +177,7 @@ const WorldMap = () => {
           })}
         </g>
       </svg>
+      <h1>News on the virus below</h1>
     </div>
   );
 };

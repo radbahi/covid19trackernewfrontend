@@ -17,14 +17,29 @@ const Stories = () => {
   }, []);
 
   const divStyle = {
-    margin: "40px",
-    position: "absolute",
-    left: "120px",
-    top: "520px",
-    width: "570px",
-    height: "500px",
+    height: "800px",
     textAlign: "center",
     overflow: "scroll",
+    display: "flex",
+    flexDirection: 'column',
+    // overflow: "scroll",
+    // textAlign: 'right',
+    // flexGrow: 2,
+    // flexShrink: 2,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // flexBasis: "20em",
+    // margin: '3vh',
+    // padding: '50vh',
+    marginTop: '-14vh',
+    marginRight: '55em',
+    marginLeft: '1em',
+    marginBottom: '10em'
+    // padding: '20vh',
+    // marginLeft: 'auto',
+    // flexWrap: 'wrap',
+    // position: 'fixed',
+    // height: '100%'
   };
 
   // const columns = _.times(1, (i) => (
@@ -38,7 +53,7 @@ const Stories = () => {
     <div style={divStyle}>
       {stories.map((stories) => {
         return (
-          <Card style={{ width: "39.3rem" }}>
+          <Card>
             <Card.Img
               variant="top"
               alt={stories.title}
