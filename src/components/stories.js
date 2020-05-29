@@ -31,9 +31,9 @@ const Stories = () => {
     // flexBasis: "20em",
     // margin: '3vh',
     // padding: '50vh',
-    marginTop: '-14vh',
-    marginRight: '55em',
-    marginLeft: '1em',
+    // marginTop: '-em',
+    marginRight: '55vw',
+    marginLeft: '1vw',
     marginBottom: '10em'
     // padding: '20vh',
     // marginLeft: 'auto',

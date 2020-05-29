@@ -19,8 +19,8 @@ const Home = () => {
     <div>
       {loggedIn}
       <WorldMap />
-      <VirusInfo />
       <Stories />
+      <VirusInfo />
     </div>
   );
 };
