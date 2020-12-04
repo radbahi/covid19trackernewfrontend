@@ -1,0 +1,3 @@
+[submodule "covid19trackernewfrontend"]
+	path = covid19trackernewfrontend
+	url = https://github.com/radbahi/covid19trackernewfrontend.git
