@@ -2,6 +2,7 @@
   "name": "covid19trackerfrontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://radbahi.github.io/covid19trackernewfrontend/",
   "dependencies": {
     "@babel/runtime": "^7.8.7",
     "@testing-library/jest-dom": "^4.2.4",
