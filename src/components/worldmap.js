@@ -73,6 +73,7 @@ const WorldMap = () => {
     infectedConfirmed = infectedConfirmed + location.confirmed
     infectedDead = infectedDead + location.deaths
     infectedRecovered = infectedRecovered + location.recovered
+    return console.log('Infected data populated')
   })
   return (
     <div style={divStyle}>
@@ -176,6 +177,7 @@ const WorldMap = () => {
                 </OverlayTrigger>
               )
             }
+            return console.log('Map populated')
           })}
         </g>
       </svg>
