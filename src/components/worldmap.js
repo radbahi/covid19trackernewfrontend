@@ -9,7 +9,7 @@ const projection = geoEqualEarth()
   .translate([800 / 2, 450 / 2])
 
 const WorldMap = () => {
-  const [geographies, setGeographies] = useState([]) // NEED TO USE STATE
+  const [geographies, setGeographies] = useState([])
   const [infectedAreas, setInfected] = useState([])
   const user = useSelector((state) => state.user)
 
@@ -21,24 +21,11 @@ const WorldMap = () => {
           return
         }
         response.json().then((infectedData) => {
-          // console.log(infectedData)
           setInfected(infectedData)
         })
       }
     )
   }, [])
-
-  // const handleHover = (i) => {
-  //   console.log(infectedAreas[i]);
-  //   return (
-  //     <Popover id="popover-basic">
-  //       <Popover.Title as="h3">{infectedAreas[i].title}</Popover.Title>
-  //       <Popover.Content>
-  //         Infected: {infectedAreas[i].confirmed}
-  //       </Popover.Content>
-  //     </Popover>
-  //   );
-  // };
 
   useEffect(() => {
     // POSSIBLY THIS CAUSING A HEROKU REQUEST TIMEOUT?
@@ -53,13 +40,6 @@ const WorldMap = () => {
     })
   }, [])
 
-  const handleCityClick = (cityIndex) => {
-    console.log('Clicked on city: ', geographies[cityIndex])
-  }
-
-  // const handleMarkerClick = (i) => {
-  //   console.log("Marker: ", infectedAreas[i]);
-  // };
   let infectedActive = 0
   let infectedConfirmed = 0
   let infectedDead = 0
@@ -73,7 +53,6 @@ const WorldMap = () => {
     infectedConfirmed = infectedConfirmed + location.confirmed
     infectedDead = infectedDead + location.deaths
     infectedRecovered = infectedRecovered + location.recovered
-    return console.log('Infected data populated')
   })
   return (
     <div style={divStyle}>
@@ -93,15 +72,12 @@ const WorldMap = () => {
               fill={`rgba(38,50,56,${(1 / geographies.length) * i})`} // maybe this to change opacity?
               stroke='#FFFFFF'
               strokeWidth={0.5}
-              onClick={() => handleCityClick(i)}
             />
           ))}
         </g>
         <g className='markers'>
           {infectedAreas.map((location, i) => {
             let coordinates = [location.lon, location.lat]
-            //  let arr = projection([city.longitude, city.latitude])
-            //  console.log(city)
 
             if (user.locations_id && user.locations_id !== 500000) {
               if (parseInt(user.locations_id) === parseInt(location.id)) {
@@ -146,6 +122,7 @@ const WorldMap = () => {
             ) {
               return (
                 <OverlayTrigger
+                  key={infectedAreas[i].id}
                   trigger='hover'
                   placement='top'
                   overlay={
@@ -168,7 +145,7 @@ const WorldMap = () => {
                     cy={projection(coordinates)[1]}
                     r={location.active > 1000 ? 14 : location.active * 0.01}
                     fill='#E91E63'
-                    fill-opacity='0.7'
+                    fillOpacity='0.7'
                     stroke='#FFFFFF'
                     className='marker'
                     // onClick={() => handleMarkerClick(i)}
@@ -177,7 +154,6 @@ const WorldMap = () => {
                 </OverlayTrigger>
               )
             }
-            return console.log('Map populated')
           })}
         </g>
       </svg>

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
 const VirusInfo = () => {
   const divStyle = {
-    display: "flex",
+    display: 'flex',
     flexDirection: 'column',
     // overflow: "scroll",
     // textAlign: 'right',
@@ -20,15 +20,14 @@ const VirusInfo = () => {
     // marginLeft: 'auto',
     // flexWrap: 'wrap',
     // position: 'fixed',
-    height: '100%'
-  };
+    height: '100%',
+  }
   const pStyle = {
-    fontSize: "18px",
-
-  };
+    fontSize: '18px',
+  }
 
   return (
-    <div style={divStyle} id="VirusInfo">
+    <div style={divStyle} id='VirusInfo'>
       <h1>Information about COVID-19 from WHO</h1>
       <ul style={pStyle}>
         <li>
@@ -55,21 +54,20 @@ const VirusInfo = () => {
           example, by coughing into a flexed elbow).
         </li>
       </ul>
-      <p style={{ textAlign: "center" }}>
-        <h3>
-          This video below goes into more detail. Please consider watching it.
-        </h3>
-      </p>
-      <iframe title="corona-vid"
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/BtN-goy9VOY"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
+      <h3 style={{ textAlign: 'center' }}>
+        This video below goes into more detail. Please consider watching it.
+      </h3>
+      <iframe
+        title='corona-vid'
+        width='560'
+        height='315'
+        src='https://www.youtube.com/embed/BtN-goy9VOY'
+        frameBorder='0'
+        allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+        allowFullscreen
       ></iframe>
     </div>
-  );
-};
+  )
+}
 
-export default VirusInfo;
+export default VirusInfo
