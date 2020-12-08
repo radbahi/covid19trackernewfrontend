@@ -2,32 +2,43 @@ import React from 'react'
 
 const VirusInfo = () => {
   const divStyle = {
+    // display: 'flex',
+    // flexDirection: 'column',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // marginRight: '0.5vw',
+    // marginLeft: '45em',
+    // height: '800px',
+    // overflow: 'scroll',
+    // height: '90vw',
+    align: 'center',
+    overflow: 'scroll',
     display: 'flex',
     flexDirection: 'column',
     // overflow: "scroll",
     // textAlign: 'right',
     // flexGrow: 2,
     // flexShrink: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     // flexBasis: "20em",
     // margin: '3vh',
     // padding: '50vh',
-    marginTop: '-113em',
-    marginRight: '0.5vw',
-    marginLeft: '60em',
+    // marginTop: '-90vw',
+    // marginRight: '0.5vw',
+    // marginLeft: '45vw',
     // padding: '20vh',
     // marginLeft: 'auto',
     // flexWrap: 'wrap',
     // position: 'fixed',
-    height: '100%',
+    // height: '100%'
   }
   const pStyle = {
     fontSize: '18px',
   }
 
   return (
-    <div style={divStyle} id='VirusInfo'>
+    <div style={divStyle}>
       <h1>Information about COVID-19 from WHO</h1>
       <ul style={pStyle}>
         <li>
@@ -64,7 +75,7 @@ const VirusInfo = () => {
         src='https://www.youtube.com/embed/BtN-goy9VOY'
         frameBorder='0'
         allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-        allowFullscreen
+        allowFullScreen
       ></iframe>
     </div>
   )
