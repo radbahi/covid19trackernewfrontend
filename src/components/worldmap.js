@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { scaleQuantile } from 'd3-scale'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 import ReactTooltip from 'react-tooltip'
 import {
   ComposableMap,
@@ -11,8 +13,34 @@ import {
 
 const geoUrl = require('./world-110m.json')
 
+const COLOR_RANGE = [
+  '#ffedea',
+  '#ffcec5',
+  '#ffad9f',
+  '#ff8a75',
+  '#ff5533',
+  '#e2492d',
+  '#be3d26',
+  '#9a311f',
+  '#782618',
+]
+
 const WorldMap = () => {
   const [infectedAreas, setInfected] = useState([])
+
+  const gradientData = {
+    fromColor: COLOR_RANGE[0],
+    toColor: COLOR_RANGE[COLOR_RANGE.length - 1],
+    min: 0,
+    max: infectedAreas.reduce(
+      (max, item) => (item.active > max ? item.active : max),
+      0
+    ),
+  }
+
+  const colorScale = scaleQuantile()
+    .domain(infectedAreas.map((d) => d.active))
+    .range(COLOR_RANGE)
 
   const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 0.65 })
 
@@ -44,104 +72,122 @@ const WorldMap = () => {
     setPosition(position)
   }
 
-  useEffect(() => {
-    fetch('https://sheltered-crag-77668.herokuapp.com/locations').then(
-      (response) => {
-        if (response.status !== 200) {
-          console.log(`There was a problem: ${response.status}`)
-          return
-        }
-        response.json().then((infectedData) => {
-          setInfected(infectedData)
-          // console.log(infectedData)
-        })
-      }
-    )
-    console.log(infectedAreas)
-  }, [])
+  // useEffect( () => {
+  //   async function fetch('https://sheltered-crag-77668.herokuapp.com/locations').then(
+  //     (response) => {
+  //       if (response.status !== 200) {
+  //         console.log(`There was a problem: ${response.status}`)
+  //         return
+  //       }
+  //       response.json().then((infectedData) => {
+  //         setInfected(infectedData)
+  //       })
+  //     }
+  //   )
+  // }, [])
 
-  return (
-    <div>
-      {/* {infectedAreas.map((location, i) => {
-        console.log(location.id)
-      })} */}
-      <ReactTooltip>{tooltipContent}</ReactTooltip>
-      <ComposableMap widith={400} height={300} data-tip=''>
-        <ZoomableGroup
-          zoom={position.zoom}
-          center={position.coordinates}
-          onMoveEnd={handleMoveEnd}
-        >
-          <Geographies geography={geoUrl}>
-            {({ geographies }) =>
-              geographies.map((geo) => {
-                const current = infectedAreas.find(
-                  (infectedLocation) =>
-                    infectedLocation.country === geo.properties.name
-                )
-                console.log(geo)
-                console.log(current)
+  useEffect(() => {
+    // better to use async await than .then. read this for why https://stackoverflow.com/a/54497100/13371788
+    // can't directly call async on useEffect so we have to make a new variable
+    const fetchInfected = async () => {
+      try {
+        const { data } = await axios.get(
+          'https://sheltered-crag-77668.herokuapp.com/locations'
+        ) // we added a proxy to frontend's package.json to prevent cors errors
+        // id is a param from the url accessed by the match object
+        // data is destructured above so we can call it directly for below instead of doing res.data all the time. this is optional.
+        setInfected(data)
+        // now we set that data to the state of this component
+      } catch (error) {
+        console.log(`There was a problem: ${error}`)
+        return
+      }
+    }
+    fetchInfected() // now just call it
+  }, []) // this is an array of dependencies. anything u want to fire useEffect off when it changes gets put in there.
+
+  if (infectedAreas[1]) {
+    return (
+      <div>
+        <ReactTooltip>{tooltipContent}</ReactTooltip>
+        <ComposableMap widith={400} height={300} data-tip=''>
+          <ZoomableGroup
+            zoom={position.zoom}
+            center={position.coordinates}
+            onMoveEnd={handleMoveEnd}
+          >
+            <Geographies geography={geoUrl}>
+              {({ geographies }) =>
+                geographies.map((geo) => {
+                  const current = infectedAreas.find(
+                    (location) => location.country === geo.properties.name
+                  )
+                  // console.log(geo)
+                  console.log(current)
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      onMouseEnter={onMouseEnter(geo, current)}
+                      onMouseLeave={onMouseLeave}
+                      fill={current ? colorScale(current.active) : '#EEE'}
+                    />
+                  )
+                })
+              }
+            </Geographies>
+            {/* {infectedAreas.map((location) => {
+              if (location && location.id !== 50000) {
                 return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    onMouseEnter={onMouseEnter(geo, current)}
-                    onMouseLeave={onMouseLeave}
-                    // fill={current.active > 1000 ? 14 : current.active * 0.01}
-                  />
+                  <Marker
+                    key={location.id}
+                    coordinates={[location.lon, location.lat]}
+                  >
+                    <circle
+                      r={location.active > 1000 ? 14 : location.active * 0.01}
+                      fill='#E91E63'
+                      fillOpacity='0.7'
+                      stroke='#FFFFFF'
+                      className='marker'
+                    />
+                  </Marker>
                 )
-              })
-            }
-          </Geographies>
-          {/* {infectedAreas.map((location) => {
-            if (location && location.id !== 50000) {
-              return (
-                <Marker
-                  key={location.id}
-                  coordinates={[location.lon, location.lat]}
-                >
-                  <circle
-                    r={location.active > 1000 ? 14 : location.active * 0.01}
-                    fill='#E91E63'
-                    fillOpacity='0.7'
-                    stroke='#FFFFFF'
-                    className='marker'
-                  />
-                </Marker>
-              )
-            }
-          })} */}
-        </ZoomableGroup>
-      </ComposableMap>
-      <div className='controls'>
-        <button onClick={handleZoomIn}>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            strokeWidth='3'
-          >
-            <line x1='12' y1='5' x2='12' y2='19' />
-            <line x1='5' y1='12' x2='19' y2='12' />
-          </svg>
-        </button>
-        <button onClick={handleZoomOut}>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            strokeWidth='3'
-          >
-            <line x1='5' y1='12' x2='19' y2='12' />
-          </svg>
-        </button>
+              }
+            })} */}
+          </ZoomableGroup>
+        </ComposableMap>
+        <div className='controls'>
+          <button onClick={handleZoomIn}>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+              strokeWidth='3'
+            >
+              <line x1='12' y1='5' x2='12' y2='19' />
+              <line x1='5' y1='12' x2='19' y2='12' />
+            </svg>
+          </button>
+          <button onClick={handleZoomOut}>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+              strokeWidth='3'
+            >
+              <line x1='5' y1='12' x2='19' y2='12' />
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return <h1>Loading...</h1>
+  }
 
   // const [geographies, setGeographies] = useState([])
   // useEffect(() => {

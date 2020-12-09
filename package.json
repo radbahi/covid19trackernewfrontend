@@ -8,7 +8,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "d3-scale": "^3.2.3",
     "next": "^9.5.5",
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
@@ -19,7 +21,9 @@
     "react-simple-maps": "^2.3.0",
     "react-tooltip": "^4.2.11",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,9 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Routes from "./routes";
-import "./App.css";
-import Nav from "./components/nav.js";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import Routes from './routes'
+import './App.css'
+import Nav from './components/nav.js'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 // USESTATE IS LIKE THIS
 //const [loading, setLoading] = useState(false)
@@ -57,13 +57,13 @@ function App() {
   // }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       <Router>
         <Nav />
         <Routes />
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
