@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import ReactTooltip from 'react-tooltip'
 import {
   ComposableMap,
   Geographies,
@@ -8,15 +9,26 @@ import {
   ZoomableGroup,
 } from 'react-simple-maps'
 
-const geoUrl =
-  'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
+const geoUrl = require('./world-110m.json')
 
 const WorldMap = () => {
   const [infectedAreas, setInfected] = useState([])
 
+  const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 0.65 })
+
   const user = useSelector((state) => state.user)
 
-  const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 0.65 })
+  const [tooltipContent, setTooltipContent] = useState('')
+
+  const onMouseEnter = (geo, current = { value: 'NA' }) => {
+    return () => {
+      setTooltipContent(`${geo.properties.name}: ${current.value}`)
+    }
+  }
+
+  const onMouseLeave = () => {
+    setTooltipContent('')
+  }
 
   function handleZoomIn() {
     if (position.zoom >= 4) return
@@ -41,20 +53,20 @@ const WorldMap = () => {
         }
         response.json().then((infectedData) => {
           setInfected(infectedData)
-          console.log(infectedData)
+          // console.log(infectedData)
         })
       }
     )
+    console.log(infectedAreas)
   }, [])
-
-  const divStyle = { marginBottom: '-10vw' }
 
   return (
     <div>
       {/* {infectedAreas.map((location, i) => {
         console.log(location.id)
       })} */}
-      <ComposableMap widith={400} height={300}>
+      <ReactTooltip>{tooltipContent}</ReactTooltip>
+      <ComposableMap widith={400} height={300} data-tip=''>
         <ZoomableGroup
           zoom={position.zoom}
           center={position.coordinates}
@@ -62,12 +74,26 @@ const WorldMap = () => {
         >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
-              geographies.map((geo) => (
-                <Geography key={geo.rsmKey} geography={geo} />
-              ))
+              geographies.map((geo) => {
+                const current = infectedAreas.find(
+                  (infectedLocation) =>
+                    infectedLocation.country === geo.properties.name
+                )
+                console.log(geo)
+                console.log(current)
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    onMouseEnter={onMouseEnter(geo, current)}
+                    onMouseLeave={onMouseLeave}
+                    // fill={current.active > 1000 ? 14 : current.active * 0.01}
+                  />
+                )
+              })
             }
           </Geographies>
-          {infectedAreas.map((location) => {
+          {/* {infectedAreas.map((location) => {
             if (location && location.id !== 50000) {
               return (
                 <Marker
@@ -77,14 +103,14 @@ const WorldMap = () => {
                   <circle
                     r={location.active > 1000 ? 14 : location.active * 0.01}
                     fill='#E91E63'
-                    fill-opacity='0.7'
+                    fillOpacity='0.7'
                     stroke='#FFFFFF'
                     className='marker'
                   />
                 </Marker>
               )
             }
-          })}
+          })} */}
         </ZoomableGroup>
       </ComposableMap>
       <div className='controls'>

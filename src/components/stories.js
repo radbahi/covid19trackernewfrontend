@@ -11,7 +11,6 @@ const Stories = () => {
           return
         }
         response.json().then((storyData) => {
-          console.log(storyData)
           setStories(storyData)
         })
       }
@@ -44,34 +43,30 @@ const Stories = () => {
     // height: '100%'
   }
 
-  // const columns = _.times(1, (i) => (
-  //     <Grid.Column key={i}>
-  //       <Image src='https://upload.wikimedia.org/wikipedia/commons/6/6a/Ubuntu_19.10_Eoan_Ermine.png' />
-  //       Text
-  //     </Grid.Column>
-  //   ))
-
   return (
-    <div style={divStyle}>
-      {stories.map((stories) => {
-        return (
-          <Card key={stories.id}>
-            <Card.Img
-              variant='top'
-              alt={stories.title}
-              src={stories.urlToImage}
-            />
-            <Card.Body>
-              <Card.Title>{stories.title}</Card.Title>
-              <Card.Subtitle>{stories.publishedAt}.</Card.Subtitle>
-              <Card.Text>{stories.description}</Card.Text>
-              <Button variant='primary' target='_blank' href={stories.url}>
-                Go to story
-              </Button>
-            </Card.Body>
-          </Card>
-        )
-      })}
+    <div>
+      <h1 style={{ textAlign: 'center' }}>International News about COVID-19</h1>
+      <div style={divStyle}>
+        {stories.map((stories) => {
+          return (
+            <Card key={stories.id}>
+              <Card.Img
+                variant='top'
+                alt={stories.title}
+                src={stories.urlToImage}
+              />
+              <Card.Body>
+                <Card.Title>{stories.title}</Card.Title>
+                <Card.Subtitle>{stories.publishedAt}.</Card.Subtitle>
+                <Card.Text>{stories.description}</Card.Text>
+                <Button variant='primary' target='_blank' href={stories.url}>
+                  Go to story
+                </Button>
+              </Card.Body>
+            </Card>
+          )
+        })}
+      </div>
     </div>
   )
 }

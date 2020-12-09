@@ -11,7 +11,8 @@ const VirusInfo = () => {
     // height: '800px',
     // overflow: 'scroll',
     // height: '90vw',
-    align: 'center',
+    // align: 'center',
+    // textAlign: 'center',
     overflow: 'scroll',
     display: 'flex',
     flexDirection: 'column',
@@ -39,7 +40,9 @@ const VirusInfo = () => {
 
   return (
     <div style={divStyle}>
-      <h1>Information about COVID-19 from WHO</h1>
+      <h1 style={{ textAlign: 'center' }}>
+        Information about COVID-19 from WHO
+      </h1>
       <ul style={pStyle}>
         <li>
           Coronavirus disease (COVID-19) is an infectious disease caused by a
@@ -68,15 +71,17 @@ const VirusInfo = () => {
       <h3 style={{ textAlign: 'center' }}>
         This video below goes into more detail. Please consider watching it.
       </h3>
-      <iframe
-        title='corona-vid'
-        width='560'
-        height='315'
-        src='https://www.youtube.com/embed/BtN-goy9VOY'
-        frameBorder='0'
-        allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-        allowFullScreen
-      ></iframe>
+      <center>
+        <iframe
+          title='corona-vid'
+          width='640'
+          height='360'
+          src='https://www.youtube.com/embed/BtN-goy9VOY'
+          frameBorder='0'
+          allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+          allowFullScreen
+        ></iframe>
+      </center>
     </div>
   )
 }
