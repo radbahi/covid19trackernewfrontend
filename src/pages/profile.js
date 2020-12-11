@@ -51,7 +51,7 @@ const Profile = (props) => {
   const id = useSelector((state) => state.user.id)
 
   const loggedIn = location ? (
-    <h3>Your set location is {location}.</h3>
+    <h3>Your set location's ID is {location}.</h3>
   ) : (
     <h3>Your set location is the whole world.</h3>
   )
@@ -64,16 +64,8 @@ const Profile = (props) => {
 
   return (
     <div>
-      Select your location below
-      {/* <Dropdown
-        placeholder="Country"
-        fluid
-        search
-        selection
-        options={countries}
-        onChange={getCountryProvinces}
-      /> */}
-      <Button onClick={setWorld}>Set to world</Button>
+      Select your location below<br></br>
+      <Button onClick={setWorld}>Reset to world</Button>
       <Dropdown
         placeholder='Location'
         fluid
