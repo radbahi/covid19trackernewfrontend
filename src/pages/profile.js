@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import userActions from '../redux/actions'
-// Use prettier to format your code and keep it neat
-// Hit command shift p and hit enter or select it
 const Profile = (props) => {
-  // const state = useSelector(state => state)
-  // const dispatch = useDispatch()
-  // console.log(state)
   const dispatch = useDispatch()
 
   const [locations, setLocations] = useState([])
@@ -16,6 +11,10 @@ const Profile = (props) => {
   const getProvince = (event, { value }) => {
     console.log(value)
     dispatch(userActions.updateUserFromDB(id, value))
+  }
+
+  const setWorld = (event) => {
+    dispatch(userActions.updateUserFromDB(id, null))
   }
 
   useEffect(() => {
@@ -29,7 +28,6 @@ const Profile = (props) => {
           }
           response.json().then((countryData) => {
             console.log(countryData)
-            // { key: 'bj', value: 'bj', flag: 'bj', text: 'Benin' }
             setLocations(
               countryData.map((location) => {
                 return {
@@ -39,8 +37,6 @@ const Profile = (props) => {
                 }
               })
             )
-            // countryList.push(countryData)
-            // go to chrome
             // Instead of creating the object here, why not send a response from your backend
             // That has the data sanitized in the fashion you have on lines 53-55.
           })
@@ -57,7 +53,7 @@ const Profile = (props) => {
   const loggedIn = location ? (
     <h3>Your set location is {location}.</h3>
   ) : (
-    <h3>You don't have a set location.</h3>
+    <h3>Your set location is the whole world.</h3>
   )
 
   const handleDelete = (e) => {
@@ -77,6 +73,7 @@ const Profile = (props) => {
         options={countries}
         onChange={getCountryProvinces}
       /> */}
+      <Button onClick={setWorld}>Set to world</Button>
       <Dropdown
         placeholder='Location'
         fluid

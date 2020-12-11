@@ -17,17 +17,17 @@
   color: red;
 }
 
-/* svg {
+svg {
   display: inline-block;
   vertical-align: middle;
-} */
+}
 
 .controls {
   display: flex;
   position: fixed;
   top: 0;
   left: 50%;
-  margin: 1.25rem 0;
+  margin: 3.5rem 0;
   text-align: center;
   transform: translateX(-50%);
 }

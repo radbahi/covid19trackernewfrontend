@@ -23,24 +23,6 @@ const Stories = () => {
     overflow: 'scroll',
     display: 'flex',
     flexDirection: 'column',
-    // overflow: "scroll",
-    // textAlign: 'right',
-    // flexGrow: 2,
-    // flexShrink: 2,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // flexBasis: "20em",
-    // margin: '3vh',
-    // padding: '50vh',
-    // marginTop: '-em',
-    // marginRight: '55vw',
-    // marginLeft: '1vw',
-    // marginBottom: '10vw',
-    // padding: '20vh',
-    // marginLeft: 'auto',
-    // flexWrap: 'wrap',
-    // position: 'fixed',
-    // height: '100%'
   }
 
   return (
@@ -70,19 +52,5 @@ const Stories = () => {
     </div>
   )
 }
-
-// useEffect(() => {
-//     fetch("http://localhost:3000/provinces")
-//         .then(response => {
-//         if (response.status !== 200) {
-//             console.log(`There was a problem: ${response.status}`)
-//             return
-//         }
-//             response.json().then(infectedData => {
-//                 // console.log(infectedData)
-//                 setInfected(infectedData)
-//             })
-//         })
-// }, [])
 
 export default Stories
